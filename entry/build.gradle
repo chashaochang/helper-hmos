@@ -1,0 +1,37 @@
+apply plugin: 'com.huawei.ohos.hap'
+apply plugin: 'com.huawei.ohos.decctest'
+ohos {
+    signingConfigs {
+        debug {
+            storeFile file('/Users/mcj/xiaobai.p12')
+            storePassword '0000001A72170CB50E10C398080154A6763ECDAEDD5CAEC70C4E52450BF4E8011909C011F88661A8B2B6'
+            keyAlias = 'xiaobai'
+            keyPassword '0000001A5FAE2361E367E5F31397CE54C8AB361CC7064265C788491544928E0E2FF5FDE197C9CC8EDFAD'
+            signAlg = 'SHA256withECDSA'
+            profile file('/Users/mcj/Downloads/xiaobaihelperDebug.p7b')
+            certpath file('/Users/mcj/Downloads/xiaobaihelper.cer')
+        }
+    }
+    compileSdkVersion 5
+    defaultConfig {
+        compatibleSdkVersion 5
+    }
+    buildTypes {
+        release {
+            proguardOpt {
+                proguardEnabled false
+                rulesFiles 'proguard-rules.pro'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar', '*.har'])
+    testImplementation 'junit:junit:4.13'
+    ohosTestImplementation 'com.huawei.ohos.testkit:runner:1.0.0.100'
+}
+decc {
+    supportType = ['html', 'xml']
+}
